@@ -12,7 +12,7 @@ public interface UserService extends Service<User> {
 
     public ResponseEntity<?> update(User user);
 
-    public User findById(Long id);
+    User findByEmail(String email);
 
     public void deleteById(Long id);
 
