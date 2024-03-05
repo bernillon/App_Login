@@ -17,18 +17,10 @@ public class Community {
     @Column(length = 150, nullable = false, unique = true)
     private String label;
 
-    @Column(length = 10, nullable = false)
-    private String streetNumber;
-
     @Column(length = 60, nullable = false)
     private String address;
 
-    @Column(length = 60, nullable = true)
-    private String addressDetail;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private City city;
-
+    @Column(length = 5, nullable = false)
+    private String postalCode;
 
 }
