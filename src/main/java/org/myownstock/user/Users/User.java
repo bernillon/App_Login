@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.myownstock.user.communities.Community;
 import org.myownstock.user.roles.Role;
 import java.time.LocalDate;
 
@@ -33,5 +34,6 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Role role;
+
 
 }

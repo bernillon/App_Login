@@ -17,4 +17,5 @@ public interface IUser extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u WHERE u.lastname = :lastname AND u.firstname = :firstname")
     public List<User> getByLastnameAndFirstname(@Param("lastname") String lastname, @Param("firstname") String firstname);
 
+
 }

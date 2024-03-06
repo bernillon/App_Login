@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.myownstock.user.Users.User;
 import org.myownstock.user.cities.City;
+
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -22,5 +25,6 @@ public class Community {
 
     @Column(length = 5, nullable = false)
     private String postalCode;
+
 
 }
