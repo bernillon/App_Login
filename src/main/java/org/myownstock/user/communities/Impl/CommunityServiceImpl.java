@@ -1,5 +1,6 @@
 package org.myownstock.user.communities.Impl;
 
+import org.myownstock.user.Users.User;
 import org.myownstock.user.communities.Community;
 import org.myownstock.user.communities.CommunityService;
 import org.myownstock.user.communities.ICommunity;
@@ -21,4 +22,12 @@ public class CommunityServiceImpl implements CommunityService {
 
     @Override
     public List<Community> findAll() {return repository.findAll();}
+
+
+
+    @Override
+    public Community findById(Long id) {
+
+        return repository.findById(id).orElse(null);
+    }
 }

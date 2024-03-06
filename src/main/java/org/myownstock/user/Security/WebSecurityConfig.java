@@ -22,7 +22,7 @@ public class WebSecurityConfig {
                 .cors(withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/users/login", "/api/v1/users/register", "/api/v1/communities", "/api/v1/roles", "/api/v1/users/{email}" ,"/api/v1/communities/people" ).permitAll()
+                        .requestMatchers("/api/v1/users/login", "/api/v1/users/register", "/api/v1/communities", "/api/v1/roles", "/api/v1/users/{email}" ,"/api/v1/communities/people", "/api/v1/communities/{communityId}/users" ).permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return http.build();
