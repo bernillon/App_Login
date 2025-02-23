@@ -12,17 +12,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/v1/auth")
 public class UserController {
 
     @Autowired
     UserService userService;
-
-    @PostMapping("/register")
-    public ResponseEntity<User> add(@RequestBody User user) {
-        User createdUser = userService.add(user);
-        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
-    }
 
     @GetMapping
     public List<User> findAll(){
@@ -44,21 +38,5 @@ public class UserController {
     public ResponseEntity<?> deleteUserById(@PathVariable Long id) {
         userService.deleteById(id);
         return ResponseEntity.ok().build();
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Login login, HttpServletResponse response) {
-        User user = userService.authenticate(login.getEmail(), login.getPassword());
-
-        JwtUtil jwtUtil = new JwtUtil();
-        String token = jwtUtil.generateToken(user.getEmail());
-
-        // Définir le token dans un cookie HttpOnly
-        Cookie cookie = new Cookie("authToken", token);
-        cookie.setHttpOnly(true);
-        cookie.setPath("/");
-        response.addCookie(cookie);
-
-        return ResponseEntity.ok().body(user);
     }
 }

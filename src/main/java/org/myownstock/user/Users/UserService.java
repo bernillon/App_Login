@@ -5,8 +5,8 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public interface UserService extends Service<User> {
-    public User add(User user);
+public interface UserService {
+//    public User add(User user);
 
     public List<User> findAll();
 
@@ -16,7 +16,7 @@ public interface UserService extends Service<User> {
 
     public void deleteById(Long id);
 
-    User authenticate(String email, String password);
+//    User authenticate(String email, String password);
 
 
 }

@@ -3,6 +3,7 @@ package org.myownstock.user.Users.Impl;
 import org.myownstock.user.Users.IUser;
 import org.myownstock.user.Users.User;
 import org.myownstock.user.Users.UserService;
+import org.myownstock.user.Users.utils.HashUtils;
 import org.myownstock.user.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private HashUtils hashUtils;
 
     @Autowired
     private IUser userRepository;
@@ -45,19 +46,24 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
-    @Override
-    public User authenticate(String email, String password) {
-        Optional<User> userOptional = userRepository.findByEmail(email);
-        if(userOptional.isPresent() && passwordEncoder.matches(password, userOptional.get().getPassword())) {
-            return userOptional.get();
-        } else {
-            throw new RuntimeException("Invalid credentials");
-        }
-    }
 
-    @Override
-    public User add(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
-    }
+    //      Gerer par le Auth Service
+
+
+//    @Override
+//    public User authenticate(String email, String password) {
+//        Optional<User> userOptional = userRepository.findByEmail(email);
+//        if(userOptional.isPresent() && this.hashUtils.matches(password, userOptional.get().getPassword())) {
+//            return userOptional.get();
+//        } else {
+//            throw new RuntimeException("Invalid credentials");
+//        }
+//    }
+//
+//    @Override
+//    public User add(User user) {
+//        //user.setPassword(passwordEncoder.encode(user.getPassword())); // rajouté un salt
+//        user.setPassword(this.hashUtils.generate(user.getPassword()));
+//        return userRepository.save(user);
+//    }
 }

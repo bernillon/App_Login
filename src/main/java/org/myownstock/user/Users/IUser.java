@@ -10,6 +10,13 @@ import java.util.Optional;
 public interface IUser extends JpaRepository<User, Long> {
 
     Optional<User> findByEmail(String email);
+
+    @Query("SELECT u FROM User u WHERE u.email = :email AND u.password = :password")
+    public Optional<User> findByEmailAndPwd(String email, String password);
+
+    @Query("SELECT u FROM User u WHERE u.email = :email")
+    public Optional<User> findIfEmailExist(String email);
+
     public List<User> findByLastname(String lastname);
 
     public List<User> findByLastnameAndFirstname(String lastname, String firstname);
